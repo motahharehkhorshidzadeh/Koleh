@@ -1,0 +1,82 @@
+✅ Step 6: Create an Admin Panel to Display Data
+We'll create a simple admin page to view all traveler and sender data that has been saved in data.json.
+
+📁 1. Create an Admin Page
+In the public folder, create a new file named admin.html:
+
+pgsql
+Copy
+Edit
+public/admin.html
+Paste the following code into admin.html:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Barband</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <h2>Travelers</h2>
+    <div id="travelers"></div>
+
+    <h2>Senders</h2>
+    <div id="senders"></div>
+
+    <script>
+        // Fetch data from server to show it in the admin panel
+        fetch('/admin-data')
+            .then(response => response.json())
+            .then(data => {
+                const travelersDiv = document.getElementById('travelers');
+                const sendersDiv = document.getElementById('senders');
+
+                data.travelers.forEach(traveler => {
+                    const travelerDiv = document.createElement('div');
+                    travelerDiv.textContent = `${traveler.name} - ${traveler.email}`;
+                    travelersDiv.appendChild(travelerDiv);
+                });
+
+                data.senders.forEach(sender => {
+                    const senderDiv = document.createElement('div');
+                    senderDiv.textContent = `${sender.name} - ${sender.email}`;
+                    sendersDiv.appendChild(senderDiv);
+                });
+            });
+    </script>
+</body>
+</html>
+🛠️ 2. Add a Route to Serve Admin Data
+Now we need to add a new route in server.js to send the data to the admin.html page.
+
+Update your server.js file by adding this route:
+
+js
+Copy
+Edit
+// Serve admin data
+app.get('/admin-data', (req, res) => {
+  const data = readData();
+  res.json(data);  // Send data in JSON format to the admin page
+});
+This route will allow the admin.html page to fetch and display the data (travelers and senders).
+
+✅ Test It:
+Run your server again:
+
+nginx
+Copy
+Edit
+node server.js
+Open your browser and visit the admin page:
+
+bash
+Copy
+Edit
+http://localhost:3000/admin.html
+You should see the data for travelers and senders displayed.
