@@ -1,0 +1,100 @@
+ Step 2: traveler.html – Traveler Form
+Create a file named: public/traveler.html
+Paste this code inside:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Traveler Form | Barband</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    input, button { display: block; margin: 15px 0; padding: 10px; width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Traveler Details</h1>
+  <form action="/submit-traveler" method="POST">
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="text" name="from" placeholder="Traveling From" required />
+    <input type="text" name="to" placeholder="Traveling To" required />
+    <input type="date" name="date" placeholder="Travel Date" required />
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
+📦 Step 3: sender.html – Sender Form
+Create a file named: public/sender.html
+Paste this code inside:
+
+html
+Copy
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sender Form | Barband</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    input, button { display: block; margin: 15px 0; padding: 10px; width: 300px; }
+  </style>
+</head>
+<body>
+  <h1>Package Sender Details</h1>
+  <form action="/submit-sender" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="text" name="pickup" placeholder="Pickup Location" required />
+    <input type="text" name="destination" placeholder="Destination" required />
+    <input type="text" name="package" placeholder="Package Description" required />
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
+⚙️ Step 4: server.js – Basic Express Server
+Now in the root of your project, create a file: server.js
+Add this full working Express server:
+
+js
+Copy
+Edit
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+
+const app = express();
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
+app.post('/submit-traveler', (req, res) => {
+  console.log('Traveler Data:', req.body);
+  res.send('Thank you, traveler!');
+});
+
+app.post('/submit-sender', (req, res) => {
+  console.log('Sender Data:', req.body);
+  res.send('Thank you for your submission!');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+🚀 Final Steps
+Run this in terminal:
+
+bash
+Copy
+Edit
+npm init -y
+npm install express body-parser
+Start server:
+
+bash
+Copy
+Edit
+node server.js
