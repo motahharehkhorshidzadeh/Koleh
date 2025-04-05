@@ -3,20 +3,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Barband - Sender</title>
+  <title>Sender Form | Barband</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; }
+    input, button { display: block; margin: 15px 0; padding: 10px; width: 300px; }
+  </style>
 </head>
 <body>
-  <h1>Sender Dashboard</h1>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/traveler.html">Traveler</a>
-  </nav>
-  <div id="sender-content">
-    <h2>Send Updates</h2>
-    <form id="update-form">
-      <input type="text" placeholder="Enter update message" required>
-      <button type="submit">Send Update</button>
-    </form>
-  </div>
+  <h1>Package Sender Details</h1>
+  <form action="/submit-sender" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="text" name="pickup" placeholder="Pickup Location" required />
+    <input type="text" name="destination" placeholder="Destination" required />
+    <input type="text" name="package" placeholder="Package Description" required />
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
