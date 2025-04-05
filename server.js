@@ -42,6 +42,12 @@ app.post('/submit-sender', (req, res) => {
   res.send('Sender data saved successfully!');
 });
 
+// Admin data endpoint
+app.get('/admin-data', (req, res) => {
+  const data = readData();
+  res.json(data);
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

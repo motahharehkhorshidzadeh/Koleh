@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Barband</title>
+</head>
+<body>
+    <h1>Admin Panel</h1>
+    <h2>Travelers</h2>
+    <div id="travelers"></div>
+
+    <h2>Senders</h2>
+    <div id="senders"></div>
+
+    <script>
+        // Fetch data from server to show it in the admin panel
+        fetch('/admin-data')
+            .then(response => response.json())
+            .then(data => {
+                const travelersDiv = document.getElementById('travelers');
+                const sendersDiv = document.getElementById('senders');
+
+                data.travelers.forEach(traveler => {
+                    const travelerDiv = document.createElement('div');
+                    travelerDiv.textContent = `${traveler.name} - ${traveler.email}`;
+                    travelersDiv.appendChild(travelerDiv);
+                });
+
+                data.senders.forEach(sender => {
+                    const senderDiv = document.createElement('div');
+                    senderDiv.textContent = `${sender.name} - ${sender.email}`;
+                    sendersDiv.appendChild(senderDiv);
+                });
+            });
+    </script>
+</body>
+</html>
