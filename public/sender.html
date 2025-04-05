@@ -6,16 +6,41 @@
   <title>Sender Form | Barband</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 30px; }
-    input, button { display: block; margin: 15px 0; padding: 10px; width: 300px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input { display: block; padding: 10px; width: 300px; margin-bottom: 5px; }
+    button { padding: 10px; width: 300px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    .error { color: red; font-size: 12px; display: none; }
   </style>
 </head>
 <body>
   <h1>Package Sender Details</h1>
-  <form action="/submit-sender" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required />
-    <input type="text" name="pickup" placeholder="Pickup Location" required />
-    <input type="text" name="destination" placeholder="Destination" required />
-    <input type="text" name="package" placeholder="Package Description" required />
+  <form id="senderForm" action="/submit-sender" method="POST">
+    <div class="form-group">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+      <span class="error">Please enter a valid 10-digit phone number</span>
+    </div>
+    <div class="form-group">
+      <label for="pickup">Pickup Location:</label>
+      <input type="text" id="pickup" name="pickup" required />
+    </div>
+    <div class="form-group">
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" name="destination" required />
+    </div>
+    <div class="form-group">
+      <label for="package">Package Description:</label>
+      <input type="text" id="package" name="package" required />
+    </div>
     <button type="submit">Submit</button>
   </form>
 </body>

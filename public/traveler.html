@@ -6,16 +6,41 @@
   <title>Traveler Form | Barband</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 30px; }
-    input, button { display: block; margin: 15px 0; padding: 10px; width: 300px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; margin-bottom: 5px; }
+    input { display: block; padding: 10px; width: 300px; margin-bottom: 5px; }
+    button { padding: 10px; width: 300px; background: #4CAF50; color: white; border: none; cursor: pointer; }
+    .error { color: red; font-size: 12px; display: none; }
   </style>
 </head>
 <body>
   <h1>Traveler Details</h1>
-  <form action="/submit-traveler" method="POST">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="text" name="from" placeholder="Traveling From" required />
-    <input type="text" name="to" placeholder="Traveling To" required />
-    <input type="date" name="date" placeholder="Travel Date" required />
+  <form id="travelerForm" action="/submit-traveler" method="POST">
+    <div class="form-group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" />
+      <span class="error">Please enter a valid 10-digit phone number</span>
+    </div>
+    <div class="form-group">
+      <label for="from">Traveling From:</label>
+      <input type="text" id="from" name="from" required />
+    </div>
+    <div class="form-group">
+      <label for="to">Traveling To:</label>
+      <input type="text" id="to" name="to" required />
+    </div>
+    <div class="form-group">
+      <label for="date">Travel Date:</label>
+      <input type="date" id="date" name="date" required />
+    </div>
     <button type="submit">Submit</button>
   </form>
 </body>
